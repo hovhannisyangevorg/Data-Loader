@@ -1,7 +1,7 @@
 package structs
 
 type GlobalInfrastructura struct {
-	Animal Animal
+	Animal []Animal
 }
 
 type (

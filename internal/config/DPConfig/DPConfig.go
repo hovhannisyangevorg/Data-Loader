@@ -1,6 +1,7 @@
-package config
+package DPConfig
 
 import (
+	"github.com/hovhannisyangevorg/Data-Procesor/internal/config/DBConfig"
 	"github.com/joho/godotenv"
 	"log"
 	"os"
@@ -9,35 +10,33 @@ import (
 
 type Config struct {
 	MinUpdateDate time.Time
-	CoreUrl       string
 	Path          string
-	Database      DatabaseConfigEnv
+	CoreUrl       string
+	ApiKey        string
+	Database      *DBConfig.DatabaseConfigEnv
 }
 
 // Load environment variables from ..env file at the start
 func init() {
 	if err := godotenv.Load(); err != nil {
-		log.Println("No ..env file found")
+		log.Println("config: init: ", err)
 	}
 }
 
 func getEnv(key, fallback string) string {
-	value, ok := os.LookupEnv(key)
-	if !ok {
-		if fallback == "" {
-			log.Fatalf("Environment variable %s is not set", key)
-		}
-		return fallback
+	if value, exists := os.LookupEnv(key); exists {
+		return value
 	}
-	return value
+	return fallback
 }
 
 func LoadConfig() *Config {
 	return &Config{
 		MinUpdateDate: time.Now().AddDate(-1, 0, 0),
 		CoreUrl:       getEnv("CORE_URL", ""),
+		ApiKey:        getEnv("API_KEY", ""),
 		Path:          getEnv("PATH", ""),
-		Database: DatabaseConfigEnv{
+		Database: &DBConfig.DatabaseConfigEnv{
 			Host:     getEnv("DB_HOST", ""),
 			Port:     getEnv("DB_PORT", ""),
 			User:     getEnv("DB_USER", ""),
