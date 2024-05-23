@@ -4,16 +4,16 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/hovhannisyangevorg/Data-Procesor/internal/client/http/AWSClient"
-	"github.com/hovhannisyangevorg/Data-Procesor/internal/client/http/DPClient"
-	"github.com/hovhannisyangevorg/Data-Procesor/internal/config/ProcesConfig"
+	"github.com/hovhannisyangevorg/Data-Procesor/internal/client/http/DataProcesorClient"
+	"github.com/hovhannisyangevorg/Data-Procesor/internal/config/DataProcesorConfig"
 	"github.com/hovhannisyangevorg/Data-Procesor/internal/structs"
 	"github.com/hovhannisyangevorg/Data-Procesor/internal/utils"
 	"io/ioutil"
 )
 
-func DataProcesor(cfg *ProcesConfig.Config, awsClient *AWSClient.AWSService) {
+func DataProcesor(cfg *DataProcesorConfig.Config, awsClient *AWSClient.AWSService) {
 	var global structs.GlobalInfrastructura
-	client := DPClient.NewClient()
+	client := DataProcesorClient.NewClient()
 	animalOperation := structs.NewAnimalOperation()
 	var FilePresentation utils.PresentationPath
 
@@ -46,7 +46,7 @@ func DataProcesor(cfg *ProcesConfig.Config, awsClient *AWSClient.AWSService) {
 	}
 }
 
-func SaveFileToS3(cfg *ProcesConfig.Config, awsClient *AWSClient.AWSService, GlobalInfo structs.GlobalInfrastructura, FilePresentation utils.PresentationPath) error {
+func SaveFileToS3(cfg *DataProcesorConfig.Config, awsClient *AWSClient.AWSService, GlobalInfo structs.GlobalInfrastructura, FilePresentation utils.PresentationPath) error {
 
 	for _, animal := range GlobalInfo.Animal {
 		FilePresentation.FileName = utils.IgnoreSpaces(animal.Name)

@@ -6,6 +6,6 @@ type LocationOperation struct {
 
 func NewLocationOperation() *LocationOperation {
 	return &LocationOperation{
-		LocationName: []string{},
+		LocationName: []string{"Africa", "Antarctica", "Asia", "Central-America", "Eurasia", "Europe", "North-America", "Oceania", "South-America"},
 	}
 }

@@ -1,10 +1,9 @@
 package structs
 
-type GlobalInfrastructura struct {
-	Animal []Animal
-}
-
 type (
+	GlobalInfrastructura struct {
+		Animal []Animal
+	}
 	// Animal struct for each animal
 	Animal struct {
 		Name            string          `json:"name"`
@@ -55,11 +54,3 @@ type (
 		NumberOfSpecies         string `json:"number_of_species,omitempty"`
 	}
 )
-
-//func (a *Animal) GetAnimalName() string {
-//	return a.Name
-//}
-
-//func (a *Animal) GetAnimalName() string {
-//	return a.Locations
-//}

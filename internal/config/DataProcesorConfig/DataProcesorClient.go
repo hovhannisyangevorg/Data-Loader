@@ -1,4 +1,4 @@
-package ProcesConfig
+package DataProcesorConfig
 
 import (
 	"github.com/hovhannisyangevorg/Data-Procesor/internal/utils"

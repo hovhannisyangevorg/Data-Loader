@@ -6,15 +6,15 @@ import (
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
-	"github.com/hovhannisyangevorg/Data-Procesor/internal/config/ProcesConfig"
+	"github.com/hovhannisyangevorg/Data-Procesor/internal/config/DataProcesorConfig"
 	"github.com/hovhannisyangevorg/Data-Procesor/internal/utils"
 	"strings"
 )
 
 type AWSServiceMethod interface {
-	CreateAWSService(cfg *ProcesConfig.Config) error
-	CreateAWSSession(cfg *ProcesConfig.Config) error
-	CreateBucket(cfg *ProcesConfig.Config) error
+	CreateAWSService(cfg *DataProcesorConfig.Config) error
+	CreateAWSSession(cfg *DataProcesorConfig.Config) error
+	CreateBucket(cfg *DataProcesorConfig.Config) error
 }
 
 type AWSService struct {
@@ -22,7 +22,7 @@ type AWSService struct {
 	S3service  *s3.S3
 }
 
-func NewAWSService(cfg *ProcesConfig.Config) (*AWSService, error) {
+func NewAWSService(cfg *DataProcesorConfig.Config) (*AWSService, error) {
 	service := &AWSService{}
 	err := service.CreateAWSService(cfg)
 	if err != nil {
@@ -35,7 +35,7 @@ func NewAWSService(cfg *ProcesConfig.Config) (*AWSService, error) {
 	return service, nil
 }
 
-func (s *AWSService) CreateAWSService(cfg *ProcesConfig.Config) error {
+func (s *AWSService) CreateAWSService(cfg *DataProcesorConfig.Config) error {
 	err := s.CreateAWSSession(cfg)
 	if err != nil {
 		return utils.WrapError("CreateAWSService", err)
@@ -45,7 +45,7 @@ func (s *AWSService) CreateAWSService(cfg *ProcesConfig.Config) error {
 	return nil
 }
 
-func (s *AWSService) CreateAWSSession(cfg *ProcesConfig.Config) error {
+func (s *AWSService) CreateAWSSession(cfg *DataProcesorConfig.Config) error {
 	sess, err := session.NewSession(&aws.Config{
 		Region:      aws.String(cfg.GetAwsRegion()),
 		Credentials: credentials.NewStaticCredentials(cfg.GetAwsKye(), cfg.GetAwsSecret(), ""),
@@ -57,7 +57,7 @@ func (s *AWSService) CreateAWSSession(cfg *ProcesConfig.Config) error {
 	return nil
 }
 
-func (s *AWSService) CreateBucket(cfg *ProcesConfig.Config) error {
+func (s *AWSService) CreateBucket(cfg *DataProcesorConfig.Config) error {
 	_, err := s.S3service.CreateBucket(&s3.CreateBucketInput{
 		Bucket: aws.String(cfg.GetAwsS3BucketName()),
 	})
@@ -67,7 +67,7 @@ func (s *AWSService) CreateBucket(cfg *ProcesConfig.Config) error {
 	return nil
 }
 
-func (s *AWSService) UploadFile(cfg *ProcesConfig.Config, fileName string, fileContent []byte) error {
+func (s *AWSService) UploadFile(cfg *DataProcesorConfig.Config, fileName string, fileContent []byte) error {
 	_, err := s.S3service.PutObject(&s3.PutObjectInput{
 		Bucket: aws.String(cfg.GetAwsS3BucketName()),
 		Key:    aws.String(fileName),

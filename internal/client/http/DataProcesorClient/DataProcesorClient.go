@@ -1,4 +1,4 @@
-package DPClient
+package DataProcesorClient
 
 import (
 	"bytes"

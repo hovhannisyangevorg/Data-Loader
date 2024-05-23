@@ -27,6 +27,7 @@ func IgnoreSpaces(fileName string) string {
 	}
 	return builder.String()
 }
+
 func WrapError(message string, err error) error {
 	return errors.New(message + ": " + err.Error())
 }
