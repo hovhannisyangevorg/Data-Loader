@@ -55,3 +55,11 @@ type (
 		NumberOfSpecies         string `json:"number_of_species,omitempty"`
 	}
 )
+
+//func (a *Animal) GetAnimalName() string {
+//	return a.Name
+//}
+
+//func (a *Animal) GetAnimalName() string {
+//	return a.Locations
+//}
