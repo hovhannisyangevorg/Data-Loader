@@ -36,13 +36,12 @@ func DataProcesor(cfg *DataProcesorConfig.Config, awsClient *AWSClient.AWSServic
 		if err != nil {
 			utils.WrapError("DataProcesor", err)
 		}
-		FilePresentation.DirName = name
+		FilePresentation.DirName = cfg.GetPath() + "/" + name
 		FilePresentation.FileData = JSONBody
 		err = SaveFileToS3(cfg, awsClient, global, FilePresentation)
 		if err != nil {
 			utils.WrapError("DataProcesor", err)
 		}
-		//fmt.Println("UREEEE:", fmt.Sprintf(cfg.CoreUrl, name))
 	}
 }
 
