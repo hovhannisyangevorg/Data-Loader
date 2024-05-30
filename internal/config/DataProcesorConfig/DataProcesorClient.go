@@ -52,6 +52,10 @@ func (c *Config) GetAwsS3BucketName() string {
 	return c.AWSInternal.AwsS3BucketName
 }
 
+func (c *Config) GetPath() string {
+	return c.Path
+}
+
 func getEnv(key, fallback string) string {
 	if value, exists := os.LookupEnv(key); exists {
 		return value
