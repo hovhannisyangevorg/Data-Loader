@@ -41,7 +41,7 @@ This Golang application fetches data from the API Ninjas API, processes it, and 
     AWS_KEY=""
     AWS_SECRET=""
     AWS_REGION=""
-    AWS_S3_BUCKET_NAME="data-processor-storage-s3"
+    AWS_S3_BUCKET_NAME="your-aws-S3storage-name"
     ```
 
 ## Usage
