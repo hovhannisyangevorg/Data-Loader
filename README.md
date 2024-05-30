@@ -20,7 +20,7 @@ This Golang application fetches data from the API Ninjas API, processes it, and 
 1. **Clone the repository:**
 
     ```sh
-    git clone git@github.com:hovhannisyangevorg/Data-Procesor.git
+    git clone git@github.com:hovhannisyangevorg/Data-Loade.git
     cd Data-Procesor
     ```
 
