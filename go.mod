@@ -24,5 +24,9 @@ require (
 	github.com/aws/smithy-go v1.20.2 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/joho/godotenv v1.5.1 // indirect
+	github.com/mattn/go-colorable v0.1.13 // indirect
+	github.com/mattn/go-isatty v0.0.19 // indirect
+	github.com/rs/zerolog v1.33.0 // indirect
+	golang.org/x/sys v0.12.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
 )
